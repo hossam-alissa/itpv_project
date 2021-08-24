@@ -56,23 +56,24 @@ class _MyHomePageState extends State<MyHomePage> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text('Vlc Player Example'),
-          bottom: TabBar(
-            tabs: [
-              Tab(text: 'Single'),
-              Tab(text: 'Multiple'),
-            ],
-          ),
-        ),
-        body: TabBarView(
-          physics: NeverScrollableScrollPhysics(),
-          children: [
-            SingleTab(),
-            MultipleTab(),
-          ],
-        ),
+        // appBar: AppBar(
+        //   centerTitle: true,
+        //   title: Text('Vlc Player Example'),
+        //   // bottom: TabBar(
+        //   //   tabs: [
+        //   //     Tab(text: 'Single'),
+        //   //     Tab(text: 'Multiple'),
+        //   //   ],
+        //   // ),
+        // ),
+        body: SingleTab(),
+        // body: TabBarView(
+        //   physics: NeverScrollableScrollPhysics(),
+        //   children: [
+        //     SingleTab(),
+        //     MultipleTab(),
+        //   ],
+        // ),
       ),
     );
   }

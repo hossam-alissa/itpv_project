@@ -101,50 +101,6 @@ class _SingleTabState extends State<SingleTab> {
   void initState() {
     super.initState();
     x();
-    // selectedVideoIndex = 0;
-    // var initVideo = Provider.of<Channels>(context , listen: false).allChannels![selectedVideoIndex!.toInt()];
-    // switch (initVideo.type!) {
-    //   case VideoType.network:
-    //     _controller = VlcPlayerController.network(
-    //       initVideo.path.toString(),
-    //       hwAcc: HwAcc.FULL,
-    //       options: VlcPlayerOptions(
-    //         advanced: VlcAdvancedOptions([
-    //           VlcAdvancedOptions.networkCaching(2000),
-    //         ]),
-    //         subtitle: VlcSubtitleOptions([
-    //           VlcSubtitleOptions.boldStyle(true),
-    //           VlcSubtitleOptions.fontSize(30),
-    //           VlcSubtitleOptions.outlineColor(VlcSubtitleColor.yellow),
-    //           VlcSubtitleOptions.outlineThickness(VlcSubtitleThickness.normal),
-    //           // works only on externally added subtitles
-    //           VlcSubtitleOptions.color(VlcSubtitleColor.navy),
-    //         ]),
-    //         rtp: VlcRtpOptions([
-    //           VlcRtpOptions.rtpOverRtsp(true),
-    //         ]),
-    //       ),
-    //     );
-    //     break;
-    //   case VideoType.file:
-    //     var file = File(initVideo.path.toString());
-    //     _controller = VlcPlayerController.file(
-    //       file,
-    //     );
-    //     break;
-    //   case VideoType.asset:
-    //     _controller = VlcPlayerController.asset(
-    //       initVideo.path.toString(),
-    //       options: VlcPlayerOptions(),
-    //     );
-    //     break;
-    // }
-    // _controller!.addOnInitListener(() async {
-    //   await _controller!.startRendererScanning();
-    // });
-    // _controller!.addOnRendererEventListener((type, id, name) {
-    //   print('OnRendererEventListener $type $id $name');
-    // });
   }
 
   @override
