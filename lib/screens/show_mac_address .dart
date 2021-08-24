@@ -1,20 +1,25 @@
+import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:itpv_project/setings/setting.dart';
+import 'package:itpv_project/widgets/responsive.dart';
 
-class ShowMacAddressScreen extends StatelessWidget {
+import '../main.dart';
+
+class ShowMacAddressScreen extends StatefulWidget {
   const ShowMacAddressScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: GestureDetector(
-        onTap: (){
+  _ShowMacAddressScreenState createState() => _ShowMacAddressScreenState();
+}
 
-        },
-        child: Container(
-          color: mainColor,
-          child: Column(
+class _ShowMacAddressScreenState extends State<ShowMacAddressScreen> {
+  Widget _mobile() {
+    return Container(
+      color: mainColor,
+      child: Stack(
+        children: [
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Stack(
@@ -36,17 +41,56 @@ class ShowMacAddressScreen extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 15.0,bottom: 10.0,left: 20.0,right: 12.0),
+                padding: const EdgeInsets.only(
+                    top: 15.0, bottom: 10.0, left: 20.0, right: 12.0),
                 child: Center(
                   child: Text(
                     "adfasdfasdadfasdfasdadfasdfasdadfas",
-                    style: TextStyle(color: Colors.white, fontSize: 20.0,),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                    ),
                     overflow: TextOverflow.fade,
                   ),
                 ),
               )
             ],
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _desktop() {
+    return Container();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Stack(
+          children: [
+            EasySplashScreen(
+              durationInSeconds: 2,
+              navigator: MyApp(),
+              logo: Image.asset(
+                "assets/images/splash_screen.png",
+                height: 0.0,
+                width: 0.0,
+              ),
+              showLoader: false,
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: Responsive(
+                mobile: _mobile(),
+                tablet: _mobile(),
+                desktop: _desktop(),
+              ),
+            ),
+          ],
         ),
       ),
     );
