@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:itpv_project/setings/setting.dart';
+import 'package:itpv_project/settings/setting.dart';
 import 'package:provider/provider.dart';
 import 'models/models.dart';
 import 'multiple_tab.dart';

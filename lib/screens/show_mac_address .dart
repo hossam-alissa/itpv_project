@@ -1,9 +1,9 @@
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:itpv_project/setings/setting.dart';
-import 'package:itpv_project/widgets/responsive.dart';
 
+import '../settings/setting.dart';
+import '../widgets/responsive.dart';
 import '../main.dart';
 
 class ShowMacAddressScreen extends StatefulWidget {

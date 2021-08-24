@@ -12,7 +12,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:provider/provider.dart';
 
 import 'models/models.dart';
-import 'setings/setting.dart';
+import 'settings/setting.dart';
 import 'vlc_player_with_controls.dart';
 
 class SingleTab extends StatefulWidget {
