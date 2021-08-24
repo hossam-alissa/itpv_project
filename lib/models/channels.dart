@@ -40,7 +40,7 @@ class Channels with ChangeNotifier {
       tvgLogo: "https://i.imgur.com/GRl09vk.jpg",
       groupTitle: "News",
       country: "-",
-      path: "https://mbnhls-lh.akamaihd.net/i/MBN_1@118619/maste r.m3u8",
+      path: "https://mbnhls-lh.akamaihd.net/i/MBN_1@118619/master.m3u8",
       type: VideoType.network,
     ),
   ];
