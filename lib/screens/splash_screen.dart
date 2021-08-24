@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Color(0xe1f5fe).withOpacity(1.0),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color(0xb313c5),
-            ],
+      body: Stack(
+        children: [
+          Container(
+            child: SvgPicture.asset("assets/images_svg/splash_screen_background.svg",fit: BoxFit.cover,),
           ),
-        ),
-        child: Center(
-          child: Image.asset('assets/images/splash_screen.png'),
-        ),
+          Center(
+            child: SvgPicture.asset("assets/images_svg/app_logo.svg",height: 200,width: 200,),
+          )
+        ],
       ),
     );
   }
@@ -30,6 +28,6 @@ class Init {
     // This is where you can initialize the resources needed by your app while
     // the splash screen is displayed.  Remove the following example because
     // delaying the user experience is a bad design practice!
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(Duration(seconds: 1));
   }
 }

@@ -11,11 +11,13 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft])
       .then((_) {
-  runApp(MyApp());
+    runApp(MyApp());
   });
 }
 
 class MyApp extends StatelessWidget {
+  bool cheackMacAddress = false;
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -38,17 +40,8 @@ class MyApp extends StatelessWidget {
             home: MultiProvider(
               providers: [
                 ChangeNotifierProvider<Channels>(create: (_) => Channels()),
-// ChangeNotifierProvider<MyProvider>(create: (_) => MyProvider()),
-// ChangeNotifierProxyProvider<UserInformation, Advertisement>(
-//     create: (_) => Advertisement(),
-//     update: (ctx, valueUI, valueAdv) => valueAdv!
-//       ..getDataAuthToken(authToken: valueUI.token.toString())),
-// ChangeNotifierProxyProvider<UserInformation, Comments>(
-//     create: (_) => Comments(),
-//     update: (ctx, valueUI, valueCom) => valueCom!
-//       ..getDataAuthToken(authToken: valueUI.token.toString())),
               ],
-              child: MyHomePage(),
+              child: ShowMacAddressScreen(),
             ),
           );
         }
