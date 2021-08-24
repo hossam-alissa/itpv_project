@@ -12,6 +12,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:provider/provider.dart';
 
 import 'models/models.dart';
+import 'setings/setting.dart';
 import 'vlc_player_with_controls.dart';
 
 class SingleTab extends StatefulWidget {
@@ -32,7 +33,7 @@ class _SingleTabState extends State<SingleTab> {
     }
     final _myFile = File(filePath);
     final List<String> listData = await _myFile.readAsLines(encoding: utf8);
-    Provider.of<Channels>(context, listen: false).addChannels(listData);
+    Provider.of<Channels>(contextProvider!, listen: false).addChannels(listData);
   }
 
   VlcPlayerController? _controller;
@@ -50,7 +51,7 @@ class _SingleTabState extends State<SingleTab> {
 
   x() {
     selectedVideoIndex = 0;
-    var initVideo = Provider.of<Channels>(context, listen: false)
+    var initVideo = Provider.of<Channels>(contextProvider!, listen: false)
         .allChannels![selectedVideoIndex!.toInt()];
     switch (initVideo.type!) {
       case VideoType.network:
@@ -176,16 +177,16 @@ class _SingleTabState extends State<SingleTab> {
         ),
         ListView.builder(
           shrinkWrap: true,
-          itemCount: Provider.of<Channels>(context, listen: true)
+          itemCount: Provider.of<Channels>(contextProvider!, listen: true)
               .allChannels!
               .length
               .toInt(),
           physics: NeverScrollableScrollPhysics(),
           itemBuilder: (BuildContext context, int index) {
-            Channel video = Provider.of<Channels>(context, listen: true).allChannels![index];
+            Channel video = Provider.of<Channels>(contextProvider!, listen: true).allChannels![index];
 
             return ListTile(
-              selected: Provider.of<Channels>(context, listen: true)
+              selected: Provider.of<Channels>(contextProvider!, listen: true)
                       .indexChannelPlayNow ==
                   index,
               selectedTileColor: Colors.black54,
@@ -193,7 +194,7 @@ class _SingleTabState extends State<SingleTab> {
                 video.tvgName.toString(),
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  color: Provider.of<Channels>(context, listen: true)
+                  color: Provider.of<Channels>(contextProvider!, listen: true)
                               .indexChannelPlayNow ==
                           index
                       ? Colors.white
@@ -204,7 +205,7 @@ class _SingleTabState extends State<SingleTab> {
                 video.path.toString(),
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  color: Provider.of<Channels>(context, listen: true)
+                  color: Provider.of<Channels>(contextProvider!, listen: true)
                               .indexChannelPlayNow ==
                           index
                       ? Colors.white
@@ -217,9 +218,9 @@ class _SingleTabState extends State<SingleTab> {
                       hwAcc: HwAcc.FULL,
                     );
                 //   selectedVideoIndex = index;
-                Provider.of<Channels>(context, listen: false).indexChannelPlayNow = index;
+                Provider.of<Channels>(contextProvider!, listen: false).indexChannelPlayNow = index;
                 setState(() {
-                  print(Provider.of<Channels>(context, listen: false)
+                  print(Provider.of<Channels>(contextProvider!, listen: false)
                       .indexChannelPlayNow);
                   print(index);
                 });

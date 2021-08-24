@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:itpv_project/setings/setting.dart';
 import 'package:provider/provider.dart';
 import 'models/models.dart';
 import 'multiple_tab.dart';
@@ -11,41 +12,25 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft])
       .then((_) {
-    runApp(MyApp());
+    runApp(SplashScreen());
   });
 }
 
 class MyApp extends StatelessWidget {
-  bool cheackMacAddress = false;
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: Init.instance.initialize(),
-      builder: (context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            home: SplashScreen(),
-          );
-        } else {
-          // Loading is done, return the app:
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-            ),
-            home: MultiProvider(
-              providers: [
-                ChangeNotifierProvider<Channels>(create: (_) => Channels()),
-              ],
-              child: ShowMacAddressScreen(),
-            ),
-          );
-        }
-      },
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<Channels>(create: (_) => Channels()),
+        ],
+        child: MyHomePage(),
+      ),
     );
   }
 }
@@ -58,6 +43,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    setState(() {
+      contextProvider = context;
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
