@@ -73,7 +73,7 @@ class _ShowMacAddressScreenState extends State<ShowMacAddressScreen> {
         body: Stack(
           children: [
             EasySplashScreen(
-              durationInSeconds: 2,
+              durationInSeconds: 1,
               navigator: MyApp(),
               logo: Image.asset(
                 "assets/images/splash_screen.png",
