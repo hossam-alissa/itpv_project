@@ -34,7 +34,7 @@ class VlcPlayerWithControlsState extends State<VlcPlayerWithControls>
 
   //
   double sliderValue = 0.0;
-  double volumeValue = 50;
+  double volumeValue = 100;
   String position = '';
   String duration = '';
   int numberOfCaptions = 0;
