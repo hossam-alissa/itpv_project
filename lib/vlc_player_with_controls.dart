@@ -51,13 +51,25 @@ class VlcPlayerWithControlsState extends State<VlcPlayerWithControls>
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller;
-    _controller!.addListener(listener);
+    try{
+      _controller = widget.controller;
+      _controller!.addListener(listener);
+      print("===== Done initState VlcPlayerWithControls =====");
+    }catch(error){
+      print("===== error initState VlcPlayerWithControls =====");
+      print(error);
+    }
   }
 
   @override
   void dispose() {
-    _controller!.removeListener(listener);
+    try{
+      _controller!.removeListener(listener);
+      print("===== Done dispose VlcPlayerWithControls =====");
+    }catch(error){
+      print("===== error dispose VlcPlayerWithControls =====");
+      print(error);
+    }
     super.dispose();
   }
 
@@ -225,7 +237,10 @@ class VlcPlayerWithControlsState extends State<VlcPlayerWithControls>
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Size: ' + ((_controller!.value.size.width).toString()).toString() + 'x' +
+                        'Size: ' +
+                            ((_controller!.value.size.width).toString())
+                                .toString() +
+                            'x' +
                             ((_controller!.value.size.height).toString())
                                 .toString(),
                         textAlign: TextAlign.center,
@@ -277,8 +292,14 @@ class VlcPlayerWithControlsState extends State<VlcPlayerWithControls>
                 IconButton(
                   color: Colors.white,
                   icon: _controller!.value.isPlaying
-                      ? Icon(Icons.pause_circle_outline,size: 40.0,)
-                      : Icon(Icons.play_circle_outline,size: 40.0,),
+                      ? Icon(
+                          Icons.pause_circle_outline,
+                          size: 40.0,
+                        )
+                      : Icon(
+                          Icons.play_circle_outline,
+                          size: 40.0,
+                        ),
                   onPressed: _togglePlaying,
                 ),
                 Expanded(
@@ -299,7 +320,8 @@ class VlcPlayerWithControlsState extends State<VlcPlayerWithControls>
                           max: (!validPosition &&
                                   _controller!.value.duration == null)
                               ? 1.0
-                              : _controller!.value.duration.inSeconds.toDouble(),
+                              : _controller!.value.duration.inSeconds
+                                  .toDouble(),
                           onChanged:
                               validPosition ? _onSliderPositionChanged : null,
                         ),
@@ -320,6 +342,8 @@ class VlcPlayerWithControlsState extends State<VlcPlayerWithControls>
             ),
           ),
         ),
+
+        ///volume
         Visibility(
           visible: widget.showControls,
           child: Container(
