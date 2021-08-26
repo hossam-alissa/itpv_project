@@ -95,25 +95,50 @@ class ControlsOverlay extends StatelessWidget {
     );
   }
 
-  Future<void> _play() {
-    return controller.play();
+  Future<void> _play() async{
+    try{
+      print("----- Done _play -----");
+      return await controller.play();
+    }catch(error){
+      print("----- error _play -----");
+      print(error);
+    }
+
   }
 
   Future<void> _replay() async {
-    await controller.stop();
-    await controller.play();
+    try{
+      await controller.stop();
+      await controller.play();
+      print("----- Done _replay -----");
+    }catch(error){
+      print("----- error _replay -----");
+      print(error);
+    }
   }
 
   Future<void> _pause() async {
-    if (controller.value.isPlaying) {
-      await controller.pause();
+    try{
+      if (controller.value.isPlaying) {
+        await controller.pause();
+      }
+      print("----- Done _pause -----");
+    }catch(error){
+      print("----- error _pause -----");
+      print(error);
     }
   }
 
   /// Returns a callback which seeks the video relative to current playing time.
   Future<void> _seekRelative(Duration seekStep) async {
-    if (controller.value.duration != null) {
-      await controller.seekTo(controller.value.position + seekStep);
+    try{
+      if (controller.value.duration != null) {
+        await controller.seekTo(controller.value.position + seekStep);
+      }
+      print("----- Done _seekRelative -----");
+    }catch(error){
+      print("----- error _seekRelative -----");
+      print(error);
     }
   }
 }

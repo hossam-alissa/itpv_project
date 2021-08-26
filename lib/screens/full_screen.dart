@@ -70,6 +70,11 @@ class _FullScreenState extends State<FullScreen> {
     try {
       await x();
       // await y();
+      if(_controller == null){
+        print("----- controller is null -----");
+      }else{
+        print("----- controller is not null -----");
+      }
       print("===== Done full screen initState startScreen =====");
     } catch (error) {
       print("===== error full screen initState startScreen =====");

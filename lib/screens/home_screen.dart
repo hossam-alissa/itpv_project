@@ -1,48 +1,51 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:itpv_project/models/models.dart';
 import 'package:provider/provider.dart';
 
-import 'models/models.dart';
-import 'screens/screens.dart';
+import 'screens.dart';
 
-class SingleTab extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
-  _SingleTabState createState() => _SingleTabState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _SingleTabState extends State<SingleTab> {
+class _HomeScreenState extends State<HomeScreen> {
   ///get data from user example "filename.m3u"
   Future<void> openFile() async {
-    print("----- openFile -----");
-    var filePath = r'/storage/emulated/0/update.apk';
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
-    if (result != null) {
-      filePath = result.files.single.path!;
-    } else {
-      /// User canceled the picker
+    try{
+      print("----- openFile -----");
+      var filePath = r'/storage/emulated/0/update.apk';
+      FilePickerResult? result = await FilePicker.platform.pickFiles();
+      if (result != null) {
+        filePath = result.files.single.path!;
+      } else {
+        /// User canceled the picker
+      }
+      final _myFile = File(filePath);
+      final List<String> listData = await _myFile.readAsLines(encoding: utf8);
+      Provider.of<Channels>(context, listen: false).addChannels(listData);
+
+      print("----- Done Open file -----");
+    }catch(error){
+      print("----- Error Open file -----");
+      print(error);
     }
-    final _myFile = File(filePath);
-    final List<String> listData = await _myFile.readAsLines(encoding: utf8);
-    Provider.of<Channels>(context, listen: false).addChannels(listData);
   }
 
 
-  Future<File> _loadVideoToFs() async {
-    final videoData = await rootBundle.load('assets/sample.mp4');
-    final videoBytes = Uint8List.view(videoData.buffer);
-    var dir = (await getTemporaryDirectory()).path;
-    var temp = File('$dir/temp.file');
-    temp.writeAsBytesSync(videoBytes);
-    return temp;
-  }
+  // Future<File> _loadVideoToFs() async {
+  //   final videoData = await rootBundle.load('assets/sample.mp4');
+  //   final videoBytes = Uint8List.view(videoData.buffer);
+  //   var dir = (await getTemporaryDirectory()).path;
+  //   var temp = File('$dir/temp.file');
+  //   temp.writeAsBytesSync(videoBytes);
+  //   return temp;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +81,7 @@ class _SingleTabState extends State<SingleTab> {
 
             return ListTile(
               selected: Provider.of<Channels>(context, listen: true)
-                      .indexChannelPlayNow ==
+                  .indexChannelPlayNow ==
                   index,
               selectedTileColor: Colors.black54,
               title: Text(
@@ -86,8 +89,8 @@ class _SingleTabState extends State<SingleTab> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: Provider.of<Channels>(context, listen: true)
-                              .indexChannelPlayNow ==
-                          index
+                      .indexChannelPlayNow ==
+                      index
                       ? Colors.white
                       : Colors.black,
                 ),
@@ -97,8 +100,8 @@ class _SingleTabState extends State<SingleTab> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: Provider.of<Channels>(context, listen: true)
-                              .indexChannelPlayNow ==
-                          index
+                      .indexChannelPlayNow ==
+                      index
                       ? Colors.white
                       : Colors.black,
                 ),
@@ -106,28 +109,23 @@ class _SingleTabState extends State<SingleTab> {
               onTap: () async {
                 try{
                   print("===== Start Channel info =====");
-                  print("=${video.tvgId}=${video.tvgName}=${video.tvgCountry}=${video.tvgLanguage}=${video.tvgLogo}=${video.country}");
+                  print("=${video.tvgId}=${video.tvgName}=${video.tvgCountry}=${video.tvgLanguage}=${video.tvgLogo}=${video.groupTitle}${video.country}");
                   print("===== End Channel info =====");
 
-                  Provider.of<Channels>(context, listen: false)
-                      .indexChannelPlayNow = index;
+                  Provider.of<Channels>(context, listen: false).indexChannelPlayNow = index;
 
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => FullScreen(path: video.path.toString(),)));
+                  // setState(() {
+                  //   print(Provider.of<Channels>(context, listen: false)
+                  //       .indexChannelPlayNow);
+                  //   print(index);
+                  // });
+
+                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => FullScreen(path: video.path.toString(),)));
                   print("===== Done Single Tap =====");
                 }catch(error){
                   print("===== error Single Tab =====");
                   print(error);
                 }
-
-
-                // setState(() {
-                //   print(Provider.of<Channels>(context, listen: false)
-                //       .indexChannelPlayNow);
-                //   print(index);
-                // });
               },
             );
           },

@@ -16,7 +16,7 @@ class ShowMacAddressScreen extends StatefulWidget {
 class _ShowMacAddressScreenState extends State<ShowMacAddressScreen> {
   Widget _mobile() {
     return Container(
-      color: mainColor,
+      color: mainColor[themeNumber],
       child: Stack(
         children: [
           Column(
@@ -45,7 +45,7 @@ class _ShowMacAddressScreenState extends State<ShowMacAddressScreen> {
                     top: 15.0, bottom: 10.0, left: 20.0, right: 12.0),
                 child: Center(
                   child: Text(
-                    "adfasdfasdadfasdfasdadfasdfasdadfas",
+                    "Your Trail Version Will Be Ended In(dd/mm/yyyy)",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20.0,

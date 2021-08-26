@@ -342,7 +342,6 @@ class VlcPlayerWithControlsState extends State<VlcPlayerWithControls>
             ),
           ),
         ),
-
         ///volume
         Visibility(
           visible: widget.showControls,
