@@ -49,6 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Column(
             children: [
+              ///Open File
               Container(
                 color: Colors.black,
                 height: heightSizeScreen! / 3,
@@ -75,11 +76,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
+              ///List View show item
               Expanded(
                 child: Container(
                   height: double.maxFinite,
                   width: widthSizeScreen! / 3,
-                  color: secondColor[themeNumber],
+                  color: Colors.white,
                   child: ListView(
                     children: [
                       GestureDetector(
@@ -96,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             "assets/images_svg/1.svg", "LIVE TV"),
                     // "assets/images_svg/live_tv_icon.svg", "LIVE TV"),
                       ),
-                      SizedBox(height: 2.0),
+                      SizedBox(height: spase),
                       GestureDetector(
                         onTap: () {
                           // Navigator.push<void>(
@@ -110,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: listViewItem(
                             "assets/images_svg/2.svg", "MOVIES"),
                       ),
-                      SizedBox(height: 2.0),
+                      SizedBox(height: spase),
                       GestureDetector(
                         onTap: () {
                           // Navigator.push<void>(
@@ -124,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: listViewItem(
                             "assets/images_svg/3.svg", "SERIES"),
                       ),
-                      SizedBox(height: 2.0),
+                      SizedBox(height: spase),
                       GestureDetector(
                         onTap: () {
                           // Navigator.push<void>(
@@ -138,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: listViewItem(
                             "assets/images_svg/4.svg", "SPORTS GUIDE"),
                       ),
-                      SizedBox(height: 2.0),
+                      SizedBox(height: spase),
                       GestureDetector(
                         onTap: () {
                           // Navigator.push<void>(
@@ -152,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: listViewItem(
                             "assets/images_svg/5.svg", "TV GUIDE"),
                       ),
-                      SizedBox(height: 2.0),
+                      SizedBox(height: spase),
                       GestureDetector(
                         onTap: () {
                           // Navigator.push<void>(
@@ -166,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: listViewItem(
                             "assets/images_svg/6.svg", "SETTING"),
                       ),
-                      SizedBox(height: 2.0),
+                      SizedBox(height: spase),
                       GestureDetector(
                         onTap: () {
                           // Navigator.push<void>(
@@ -178,44 +180,51 @@ class _HomeScreenState extends State<HomeScreen> {
                           // );
                         },
                         child: listViewItem(
-                            "assets/images_svg/7.svg", "Pay App"),
+                            "assets/images_svg/7.svg", "Pay Premium Version"),
                       ),
-                      SizedBox(height: 2.0),
+                      SizedBox(height: spase),
                     ],
                   ),
                 ),
               )
             ],
           ),
+          ///Show channel info
+          Container(
+            width: 3,
+            color: secondColor[themeNumber],
+          ),
           Expanded(
             child: Container(
+              padding: const EdgeInsets.only(left: 12.0,bottom: 10.0),
               color: mainColor[themeNumber],
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Featured Movies" ,style: styleListView),
-                  Container(
-                    alignment: Alignment.topCenter,
-                    height: heightSizeScreen! / 3,
-                    width: double.maxFinite,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      itemCount: Provider.of<Channels>(context, listen: true)
-                          .allChannels!
-                          .length
-                          .toInt(),
-                      itemBuilder: (BuildContext context, int index) {
-                        Channel video =
-                        Provider.of<Channels>(context, listen: true)
-                            .allChannels![index];
-                        return channelView(video, context);
-                      },
-                    ),
-                  ),
+                  Text("Favorite Live TV " ,style: styleListView),
+                  ///Favorite Live Tv
+                  // Container(
+                  //   height: heightSizeScreen! / 3,
+                  //   width: double.maxFinite,
+                  //   child: ListView.builder(
+                  //     scrollDirection: Axis.horizontal,
+                  //     shrinkWrap: true,
+                  //     itemCount: Provider.of<Channels>(context, listen: true)
+                  //         .allChannels!
+                  //         .length
+                  //         .toInt(),
+                  //     itemBuilder: (BuildContext context, int index) {
+                  //       Channel video =
+                  //       Provider.of<Channels>(context, listen: true)
+                  //           .allChannels![index];
+                  //       return channelView(video, context);
+                  //     },
+                  //   ),
+                  // ),
                   Text("Featured Movies", style: styleListView,),
+                  ///Featured Movies
                   Container(
-                    alignment: Alignment.topCenter,
                     height: heightSizeScreen! / 3,
                     width: double.maxFinite,
                     child: ListView.builder(
@@ -299,8 +308,8 @@ Widget listViewItem(
         Center(
           child: SvgPicture.asset(
             imgUrl.toString(),
-            height: heightSizeScreen! / 12,
-            width: heightSizeScreen! / 12,
+            height: heightSizeScreen! / 16,
+            width: heightSizeScreen! / 16,
           ),
         ),
         SizedBox(width: 10.0),
