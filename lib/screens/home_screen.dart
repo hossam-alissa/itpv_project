@@ -6,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:itpv_project/models/models.dart';
-import 'package:itpv_project/screens/live_tv_screen.dart';
 import 'package:itpv_project/settings/setting.dart';
 import 'package:provider/provider.dart';
 
@@ -101,13 +100,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(height: spase),
                       GestureDetector(
                         onTap: () {
-                          // Navigator.push<void>(
-                          //   context,
-                          //   MaterialPageRoute<void>(
-                          //     builder: (BuildContext context) =>
-                          //         const LiveTvScreen(),
-                          //   ),
-                          // );
+                          Navigator.push<void>(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  const MoviesScreen(),
+                            ),
+                          );
                         },
                         child: listViewItem(
                             "assets/images_svg/2.svg", "MOVIES"),
@@ -115,13 +114,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(height: spase),
                       GestureDetector(
                         onTap: () {
-                          // Navigator.push<void>(
-                          //   context,
-                          //   MaterialPageRoute<void>(
-                          //     builder: (BuildContext context) =>
-                          //         const LiveTvScreen(),
-                          //   ),
-                          // );
+                          Navigator.push<void>(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  const SeriesScreen(),
+                            ),
+                          );
                         },
                         child: listViewItem(
                             "assets/images_svg/3.svg", "SERIES"),
@@ -129,13 +128,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(height: spase),
                       GestureDetector(
                         onTap: () {
-                          // Navigator.push<void>(
-                          //   context,
-                          //   MaterialPageRoute<void>(
-                          //     builder: (BuildContext context) =>
-                          //         const LiveTvScreen(),
-                          //   ),
-                          // );
+                          Navigator.push<void>(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  const SportsGuideScreen(),
+                            ),
+                          );
                         },
                         child: listViewItem(
                             "assets/images_svg/4.svg", "SPORTS GUIDE"),
@@ -143,13 +142,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(height: spase),
                       GestureDetector(
                         onTap: () {
-                          // Navigator.push<void>(
-                          //   context,
-                          //   MaterialPageRoute<void>(
-                          //     builder: (BuildContext context) =>
-                          //         const LiveTvScreen(),
-                          //   ),
-                          // );
+                          Navigator.push<void>(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  const TvGuideScreen(),
+                            ),
+                          );
                         },
                         child: listViewItem(
                             "assets/images_svg/5.svg", "TV GUIDE"),
@@ -157,13 +156,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(height: spase),
                       GestureDetector(
                         onTap: () {
-                          // Navigator.push<void>(
-                          //   context,
-                          //   MaterialPageRoute<void>(
-                          //     builder: (BuildContext context) =>
-                          //         const LiveTvScreen(),
-                          //   ),
-                          // );
+                          Navigator.push<void>(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  const SettingScreen(),
+                            ),
+                          );
                         },
                         child: listViewItem(
                             "assets/images_svg/6.svg", "SETTING"),
@@ -171,13 +170,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(height: spase),
                       GestureDetector(
                         onTap: () {
-                          // Navigator.push<void>(
-                          //   context,
-                          //   MaterialPageRoute<void>(
-                          //     builder: (BuildContext context) =>
-                          //         const LiveTvScreen(),
-                          //   ),
-                          // );
+                          Navigator.push<void>(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  const PaymentScreen(),
+                            ),
+                          );
                         },
                         child: listViewItem(
                             "assets/images_svg/7.svg", "Pay Premium Version"),
