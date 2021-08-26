@@ -66,6 +66,15 @@ class _ShowMacAddressScreenState extends State<ShowMacAddressScreen> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    widthSizeScreen =  MediaQuery.of(context).size.width.toDouble();
+    heightSizeScreen =  MediaQuery.of(context).size.height.toDouble();
+    appSetting(MediaQuery.of(context).size.width.toDouble());
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
