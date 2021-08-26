@@ -4,7 +4,10 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:itpv_project/models/models.dart';
+import 'package:itpv_project/screens/live_tv_screen.dart';
+import 'package:itpv_project/settings/setting.dart';
 import 'package:provider/provider.dart';
 
 import 'screens.dart';
@@ -17,7 +20,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   ///get data from user example "filename.m3u"
   Future<void> openFile() async {
-    try{
+    try {
       print("----- openFile -----");
       var filePath = r'/storage/emulated/0/update.apk';
       FilePickerResult? result = await FilePicker.platform.pickFiles();
@@ -31,106 +34,283 @@ class _HomeScreenState extends State<HomeScreen> {
       Provider.of<Channels>(context, listen: false).addChannels(listData);
 
       print("----- Done Open file -----");
-    }catch(error){
+    } catch (error) {
       print("----- Error Open file -----");
       print(error);
     }
   }
 
-
-  // Future<File> _loadVideoToFs() async {
-  //   final videoData = await rootBundle.load('assets/sample.mp4');
-  //   final videoBytes = Uint8List.view(videoData.buffer);
-  //   var dir = (await getTemporaryDirectory()).path;
-  //   var temp = File('$dir/temp.file');
-  //   temp.writeAsBytesSync(videoBytes);
-  //   return temp;
-  // }
-
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              TextButton(
-                child: Text('Tap to open file'),
-                onPressed: () {
-                  openFile();
-                },
+    print(heightSizeScreen);
+    print(widthSizeScreen);
+    return SafeArea(
+      child: Row(
+        children: [
+          Column(
+            children: [
+              Container(
+                color: Colors.black,
+                height: heightSizeScreen! / 3,
+                width: widthSizeScreen! / 3,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      TextButton(
+                        child: Text('Tap to open file'),
+                        onPressed: () {
+                          openFile();
+                        },
+                      ),
+                      TextButton(
+                        child: Text('info'),
+                        onPressed: () {
+                          setState(() {
+                            themeNumber = 1;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              TextButton(
-                child: Text('info'),
-                onPressed: () {},
-              ),
+              Expanded(
+                child: Container(
+                  height: double.maxFinite,
+                  width: widthSizeScreen! / 3,
+                  color: secondColor[themeNumber],
+                  child: ListView(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push<void>(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  const LiveTvScreen(),
+                            ),
+                          );
+                        },
+                        child: listViewItem(
+                            "assets/images_svg/1.svg", "LIVE TV"),
+                    // "assets/images_svg/live_tv_icon.svg", "LIVE TV"),
+                      ),
+                      SizedBox(height: 2.0),
+                      GestureDetector(
+                        onTap: () {
+                          // Navigator.push<void>(
+                          //   context,
+                          //   MaterialPageRoute<void>(
+                          //     builder: (BuildContext context) =>
+                          //         const LiveTvScreen(),
+                          //   ),
+                          // );
+                        },
+                        child: listViewItem(
+                            "assets/images_svg/2.svg", "MOVIES"),
+                      ),
+                      SizedBox(height: 2.0),
+                      GestureDetector(
+                        onTap: () {
+                          // Navigator.push<void>(
+                          //   context,
+                          //   MaterialPageRoute<void>(
+                          //     builder: (BuildContext context) =>
+                          //         const LiveTvScreen(),
+                          //   ),
+                          // );
+                        },
+                        child: listViewItem(
+                            "assets/images_svg/3.svg", "SERIES"),
+                      ),
+                      SizedBox(height: 2.0),
+                      GestureDetector(
+                        onTap: () {
+                          // Navigator.push<void>(
+                          //   context,
+                          //   MaterialPageRoute<void>(
+                          //     builder: (BuildContext context) =>
+                          //         const LiveTvScreen(),
+                          //   ),
+                          // );
+                        },
+                        child: listViewItem(
+                            "assets/images_svg/4.svg", "SPORTS GUIDE"),
+                      ),
+                      SizedBox(height: 2.0),
+                      GestureDetector(
+                        onTap: () {
+                          // Navigator.push<void>(
+                          //   context,
+                          //   MaterialPageRoute<void>(
+                          //     builder: (BuildContext context) =>
+                          //         const LiveTvScreen(),
+                          //   ),
+                          // );
+                        },
+                        child: listViewItem(
+                            "assets/images_svg/5.svg", "TV GUIDE"),
+                      ),
+                      SizedBox(height: 2.0),
+                      GestureDetector(
+                        onTap: () {
+                          // Navigator.push<void>(
+                          //   context,
+                          //   MaterialPageRoute<void>(
+                          //     builder: (BuildContext context) =>
+                          //         const LiveTvScreen(),
+                          //   ),
+                          // );
+                        },
+                        child: listViewItem(
+                            "assets/images_svg/6.svg", "SETTING"),
+                      ),
+                      SizedBox(height: 2.0),
+                      GestureDetector(
+                        onTap: () {
+                          // Navigator.push<void>(
+                          //   context,
+                          //   MaterialPageRoute<void>(
+                          //     builder: (BuildContext context) =>
+                          //         const LiveTvScreen(),
+                          //   ),
+                          // );
+                        },
+                        child: listViewItem(
+                            "assets/images_svg/7.svg", "Pay App"),
+                      ),
+                      SizedBox(height: 2.0),
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
-        ),
-        ListView.builder(
-          shrinkWrap: true,
-          itemCount: Provider.of<Channels>(context, listen: true)
-              .allChannels!
-              .length
-              .toInt(),
-          physics: NeverScrollableScrollPhysics(),
-          itemBuilder: (BuildContext context, int index) {
-            Channel video = Provider.of<Channels>(context, listen: true)
-                .allChannels![index];
-
-            return ListTile(
-              selected: Provider.of<Channels>(context, listen: true)
-                  .indexChannelPlayNow ==
-                  index,
-              selectedTileColor: Colors.black54,
-              title: Text(
-                video.tvgName.toString(),
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: Provider.of<Channels>(context, listen: true)
-                      .indexChannelPlayNow ==
-                      index
-                      ? Colors.white
-                      : Colors.black,
-                ),
+          Expanded(
+            child: Container(
+              color: mainColor[themeNumber],
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text("Featured Movies" ,style: styleListView),
+                  Container(
+                    alignment: Alignment.topCenter,
+                    height: heightSizeScreen! / 3,
+                    width: double.maxFinite,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: Provider.of<Channels>(context, listen: true)
+                          .allChannels!
+                          .length
+                          .toInt(),
+                      itemBuilder: (BuildContext context, int index) {
+                        Channel video =
+                        Provider.of<Channels>(context, listen: true)
+                            .allChannels![index];
+                        return channelView(video, context);
+                      },
+                    ),
+                  ),
+                  Text("Featured Movies", style: styleListView,),
+                  Container(
+                    alignment: Alignment.topCenter,
+                    height: heightSizeScreen! / 3,
+                    width: double.maxFinite,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: Provider.of<Channels>(context, listen: true)
+                          .allChannels!
+                          .length
+                          .toInt(),
+                      itemBuilder: (BuildContext context, int index) {
+                        Channel video =
+                            Provider.of<Channels>(context, listen: true)
+                                .allChannels![index];
+                        return channelView(video, context);
+                      },
+                    ),
+                  ),
+                ],
               ),
-              subtitle: Text(
-                video.path.toString(),
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: Provider.of<Channels>(context, listen: true)
-                      .indexChannelPlayNow ==
-                      index
-                      ? Colors.white
-                      : Colors.black,
-                ),
-              ),
-              onTap: () async {
-                try{
-                  print("===== Start Channel info =====");
-                  print("=${video.tvgId}=${video.tvgName}=${video.tvgCountry}=${video.tvgLanguage}=${video.tvgLogo}=${video.groupTitle}${video.country}");
-                  print("===== End Channel info =====");
-
-                  Provider.of<Channels>(context, listen: false).indexChannelPlayNow = index;
-
-                  // setState(() {
-                  //   print(Provider.of<Channels>(context, listen: false)
-                  //       .indexChannelPlayNow);
-                  //   print(index);
-                  // });
-
-                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => FullScreen(path: video.path.toString(),)));
-                  print("===== Done Single Tap =====");
-                }catch(error){
-                  print("===== error Single Tab =====");
-                  print(error);
-                }
-              },
-            );
-          },
-        ),
-      ],
+            ),
+          ),
+        ],
+      ),
     );
   }
+}
+
+Widget channelView(
+  Channel channel,
+  BuildContext context,
+) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+    child: GestureDetector(
+      onTap: () {
+        try {
+          print("===== Start Channel info =====");
+          print(
+              "=${channel.tvgId}=${channel.tvgName}=${channel.tvgCountry}=${channel.tvgLanguage}=${channel.tvgLogo}=${channel.groupTitle}${channel.country}");
+          print("===== End Channel info =====");
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => FullScreen(
+                        path: channel.path.toString(),
+                      )));
+          print("===== Done Single Tap =====");
+        } catch (error) {
+          print("===== error Single Tab =====");
+          print(error);
+        }
+      },
+      child: Column(
+        children: [
+          Container(
+            height: heightSizeScreen! / 4.5,
+            width: heightSizeScreen! / 4.5,
+            child: Image.network(
+              channel.tvgLogo.toString(),
+              fit: BoxFit.fill,
+            ),
+          ),
+          Expanded(child: Text(channel.tvgName.toString(),style: styleListView,overflow: TextOverflow.ellipsis,)),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget listViewItem(
+  String imgUrl,
+  String title,
+) {
+  return Container(
+    height: heightSizeScreen! / 11,
+    color: mainColor[themeNumber],
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(width: 10.0),
+        Center(
+          child: SvgPicture.asset(
+            imgUrl.toString(),
+            height: heightSizeScreen! / 12,
+            width: heightSizeScreen! / 12,
+          ),
+        ),
+        SizedBox(width: 10.0),
+        Center(
+          child: Text(
+            title,
+            style: styleListView,
+          ),
+        ),
+      ],
+    ),
+  );
 }
