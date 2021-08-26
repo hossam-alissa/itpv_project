@@ -283,6 +283,16 @@ Widget channelView(
             child: Image.network(
               channel.tvgLogo.toString(),
               fit: BoxFit.fill,
+              errorBuilder:
+                  (BuildContext context, Object exception, StackTrace? stackTrace) {
+                // Appropriate logging or analytics, e.g.
+                // myAnalytics.recordError(
+                //   'An error occurred loading "https://example.does.not.exist/image.jpg"',
+                //   exception,
+                //   stackTrace,
+                // );
+                return SvgPicture.asset("assets/images_svg/pay_premium_version.svg");
+              },
             ),
           ),
           Expanded(child: Text(channel.tvgName.toString(),style: styleListView,overflow: TextOverflow.ellipsis,)),
