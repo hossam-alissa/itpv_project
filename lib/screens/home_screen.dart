@@ -94,8 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         },
                         child: listViewItem(
-                            "assets/images_svg/1.svg", "LIVE TV"),
-                    // "assets/images_svg/live_tv_icon.svg", "LIVE TV"),
+                            "assets/images_svg/live_tv_icon.svg", "LIVE TV"),
                       ),
                       SizedBox(height: spase),
                       GestureDetector(
@@ -109,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         },
                         child: listViewItem(
-                            "assets/images_svg/2.svg", "MOVIES"),
+                            "assets/images_svg/movies_icon.svg", "MOVIES"),
                       ),
                       SizedBox(height: spase),
                       GestureDetector(
@@ -123,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         },
                         child: listViewItem(
-                            "assets/images_svg/3.svg", "SERIES"),
+                            "assets/images_svg/series_icon.svg", "SERIES"),
                       ),
                       SizedBox(height: spase),
                       GestureDetector(
@@ -137,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         },
                         child: listViewItem(
-                            "assets/images_svg/4.svg", "SPORTS GUIDE"),
+                            "assets/images_svg/sports_guide_icon.svg", "SPORTS GUIDE"),
                       ),
                       SizedBox(height: spase),
                       GestureDetector(
@@ -151,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         },
                         child: listViewItem(
-                            "assets/images_svg/5.svg", "TV GUIDE"),
+                            "assets/images_svg/tv_guide_icon.svg", "TV GUIDE"),
                       ),
                       SizedBox(height: spase),
                       GestureDetector(
@@ -165,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         },
                         child: listViewItem(
-                            "assets/images_svg/6.svg", "SETTING"),
+                            "assets/images_svg/setting_icon.svg", "SETTING"),
                       ),
                       SizedBox(height: spase),
                       GestureDetector(
@@ -179,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         },
                         child: listViewItem(
-                            "assets/images_svg/7.svg", "Pay Premium Version"),
+                            "assets/images_svg/pay_premium_version.svg", "Pay Premium Version"),
                       ),
                       SizedBox(height: spase),
                     ],
