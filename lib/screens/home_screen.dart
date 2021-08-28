@@ -254,52 +254,61 @@ Widget channelView(
   Channel channel,
   BuildContext context,
 ) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-    child: GestureDetector(
-      onTap: () {
-        try {
-          print("===== Start Channel info =====");
-          print(
-              "=${channel.tvgId}=${channel.tvgName}=${channel.tvgCountry}=${channel.tvgLanguage}=${channel.tvgLogo}=${channel.groupTitle}${channel.country}");
-          print("===== End Channel info =====");
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => FullScreen(
-                        path: channel.path.toString(),
-                      )));
-          print("===== Done Single Tap =====");
-        } catch (error) {
-          print("===== error Single Tab =====");
-          print(error);
-        }
-      },
-      child: Column(
-        children: [
-          Container(
-            height: heightSizeScreen! / 4.5,
-            width: heightSizeScreen! / 4.5,
-            child: Image.network(
-              channel.tvgLogo.toString(),
-              fit: BoxFit.fill,
-              errorBuilder:
-                  (BuildContext context, Object exception, StackTrace? stackTrace) {
-                // Appropriate logging or analytics, e.g.
-                // myAnalytics.recordError(
-                //   'An error occurred loading "https://example.does.not.exist/image.jpg"',
-                //   exception,
-                //   stackTrace,
-                // );
-                return SvgPicture.asset("assets/images_svg/pay_premium_version.svg");
-              },
+  try{
+    print("----- Done channelView -----");
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+      child: GestureDetector(
+        onTap: () {
+          try {
+            print("===== Start Channel info =====");
+            print(
+                "=${channel.tvgId}=${channel.tvgName}=${channel.tvgCountry}=${channel.tvgLanguage}=${channel.tvgLogo}=${channel.groupTitle}${channel.country}");
+            print("===== End Channel info =====");
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => FullScreen(
+                      path: channel.path.toString(),
+                    )));
+            print("===== Done Single Tap =====");
+          } catch (error) {
+            print("===== error Single Tab =====");
+            print(error);
+          }
+        },
+        child: Column(
+          children: [
+            Container(
+              height: heightSizeScreen! / 4.5,
+              width: heightSizeScreen! / 4.5,
+              child: Image.network(
+                channel.tvgLogo.toString(),
+                fit: BoxFit.fill,
+                errorBuilder:
+                    (BuildContext context, Object exception, StackTrace? stackTrace) {
+                  // Appropriate logging or analytics, e.g.
+                  // myAnalytics.recordError(
+                  //   'An error occurred loading "https://example.does.not.exist/image.jpg"',
+                  //   exception,
+                  //   stackTrace,
+                  // );
+                  return SvgPicture.asset("assets/images_svg/pay_premium_version.svg");
+                },
+              ),
             ),
-          ),
-          Expanded(child: Text(channel.tvgName.toString(),style: styleListView,overflow: TextOverflow.ellipsis,)),
-        ],
+            Expanded(child: Text(channel.tvgName.toString(),style: styleListView,overflow: TextOverflow.ellipsis,)),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }catch(error){
+    print("----- error channelView -----");
+    print(error);
+    return Container();
+  }
+
+
 }
 
 Widget listViewItem(
