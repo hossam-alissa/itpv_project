@@ -282,7 +282,11 @@ Widget channelView(
             width: heightSizeScreen! / 4.5,
             child: Image.network(
               channel.tvgLogo.toString(),
-              fit: BoxFit.fill,
+              fit: BoxFit.fill, errorBuilder: (context, error, stackTrace) {
+                  print("----- error image url not fount -----$error");
+                  return SvgPicture.asset("assets/images_svg/channel_icon.svg");
+              }
+
             ),
           ),
           Expanded(child: Text(channel.tvgName.toString(),style: styleListView,overflow: TextOverflow.ellipsis,)),
