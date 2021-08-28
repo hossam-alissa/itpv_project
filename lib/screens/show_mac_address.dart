@@ -85,7 +85,7 @@ class _ShowMacAddressScreenState extends State<ShowMacAddressScreen> {
               durationInSeconds: 1,
               navigator: MyApp(),
               logo: Image.asset(
-                "assets/images/splash_screen.png",
+                "assets/images/app_icon.png",
                 height: 0.0,
                 width: 0.0,
               ),

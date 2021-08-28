@@ -15,7 +15,7 @@ class SplashScreen extends StatelessWidget {
                 durationInSeconds: 3,
                 navigator: ShowMacAddressScreen(),
                 logo: Image.asset(
-                  "assets/images/splash_screen.png",
+                  "assets/images/app_icon.png",
                   height: 0.0,
                   width: 0.0,
                 ),
