@@ -113,8 +113,6 @@ class _FullScreenState extends State<FullScreen> {
               bottom: 0,
               child: GestureDetector(
                 onTap: () async{
-                  // await _controller!.stopRendererScanning();
-                  // await _controller!.dispose();
                   Navigator.pop(context);
                 },
                 child: Container(

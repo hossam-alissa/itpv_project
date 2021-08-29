@@ -75,6 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
+
               ///List View show item
               Expanded(
                 child: Container(
@@ -136,7 +137,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         },
                         child: listViewItem(
-                            "assets/images_svg/sports_guide_icon.svg", "SPORTS GUIDE"),
+                            "assets/images_svg/sports_guide_icon.svg",
+                            "SPORTS GUIDE"),
                       ),
                       SizedBox(height: spase),
                       GestureDetector(
@@ -178,7 +180,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         },
                         child: listViewItem(
-                            "assets/images_svg/pay_premium_version.svg", "Pay Premium Version"),
+                            "assets/images_svg/pay_premium_version.svg",
+                            "Pay Premium Version"),
                       ),
                       SizedBox(height: spase),
                     ],
@@ -187,6 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
               )
             ],
           ),
+
           ///Show channel info
           Container(
             width: 3,
@@ -194,13 +198,14 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Expanded(
             child: Container(
-              padding: const EdgeInsets.only(left: 12.0,bottom: 10.0),
+              padding: const EdgeInsets.only(left: 12.0, bottom: 10.0),
               color: mainColor[themeNumber],
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Favorite Live TV " ,style: styleListView),
+                  Text("Favorite Live TV ", style: styleListView),
+
                   ///Favorite Live Tv
                   // Container(
                   //   height: heightSizeScreen! / 3,
@@ -220,7 +225,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   //     },
                   //   ),
                   // ),
-                  Text("Featured Movies", style: styleListView,),
+                  Text(
+                    "Featured Movies",
+                    style: styleListView,
+                  ),
+
                   ///Featured Movies
                   Container(
                     height: heightSizeScreen! / 3,
@@ -282,14 +291,19 @@ Widget channelView(
             width: heightSizeScreen! / 4.5,
             child: Image.network(
               channel.tvgLogo.toString(),
-              fit: BoxFit.fill, errorBuilder: (context, error, stackTrace) {
-                  print("----- error image url not fount -----$error");
-                  return SvgPicture.asset("assets/images_svg/channel_icon.svg");
-              }
-
+              fit: BoxFit.fill,
+              errorBuilder: (context, error, stackTrace) {
+                print("----- error image url not fount -----$error");
+                return SvgPicture.asset("assets/images_svg/channel_icon.svg");
+              },
             ),
           ),
-          Expanded(child: Text(channel.tvgName.toString(),style: styleListView,overflow: TextOverflow.ellipsis,)),
+          Expanded(
+              child: Text(
+            channel.tvgName.toString(),
+            style: styleListView,
+            overflow: TextOverflow.ellipsis,
+          )),
         ],
       ),
     ),
