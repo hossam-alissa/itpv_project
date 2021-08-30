@@ -384,200 +384,200 @@ class VlcPlayerWithControlsState extends State<VlcPlayerWithControls>
     );
   }
 
-  void _cyclePlaybackSpeed() async {
-    try {
-      playbackSpeedIndex++;
-      if (playbackSpeedIndex >= playbackSpeeds.length) {
-        playbackSpeedIndex = 0;
-      }
-      return await _controller!
-          .setPlaybackSpeed(playbackSpeeds.elementAt(playbackSpeedIndex));
-      // print("===== Done _cyclePlaybackSpeed VlcPlayerWithControls =====");
-    } catch (error) {
-      print("===== error _cyclePlaybackSpeed VlcPlayerWithControls =====");
-      print(error);
-    }
-  }
-
-  void _setSoundVolume(value) {
-    setState(() {
-      volumeValue = value;
-    });
-    _controller!.setVolume(volumeValue.toInt());
-  }
-
-  void _togglePlaying() async {
-    try {
-      _controller!.value.isPlaying
-          ? await _controller!.pause()
-          : await _controller!.play();
-      print('Toggle Playing');
-
-      print("===== Done _togglePlaying VlcPlayerWithControls =====");
-    } catch (error) {
-      print("===== error _togglePlaying VlcPlayerWithControls =====");
-      print(error);
-    }
-  }
-
-  void _onSliderPositionChanged(double progress) {
-    setState(() {
-      sliderValue = progress.floor().toDouble();
-    });
-    //convert to Milliseconds since VLC requires MS to set time
-    _controller!.setTime(sliderValue.toInt() * 1000);
-  }
-
-  void _getSubtitleTracks() async {
-    try {
-      if (!_controller!.value.isPlaying) return;
-
-      var subtitleTracks = await _controller!.getSpuTracks();
-      //
-      if (subtitleTracks != null && subtitleTracks.isNotEmpty) {
-        var selectedSubId = await showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Select Subtitle'),
-              content: Container(
-                width: double.maxFinite,
-                height: 250,
-                child: ListView.builder(
-                  itemCount: subtitleTracks.keys.length + 1,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(
-                        index < subtitleTracks.keys.length
-                            ? subtitleTracks.values.elementAt(index).toString()
-                            : 'Disable',
-                      ),
-                      onTap: () {
-                        Navigator.pop(
-                          context,
-                          index < subtitleTracks.keys.length
-                              ? subtitleTracks.keys.elementAt(index)
-                              : -1,
-                        );
-                      },
-                    );
-                  },
-                ),
-              ),
-            );
-          },
-        );
-        if (selectedSubId != null)
-          await _controller!.setSpuTrack(selectedSubId);
-      }
-
-      print("===== Done _getSubtitleTracks VlcPlayerWithControls =====");
-    } catch (error) {
-      print("===== error _getSubtitleTracks VlcPlayerWithControls =====");
-      print(error);
-    }
-  }
-
-  void _getAudioTracks() async {
-    try {
-      if (!_controller!.value.isPlaying) return;
-
-      var audioTracks = await _controller!.getAudioTracks();
-      //
-      if (audioTracks != null && audioTracks.isNotEmpty) {
-        var selectedAudioTrackId = await showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Select Audio'),
-              content: Container(
-                width: double.maxFinite,
-                height: 250,
-                child: ListView.builder(
-                  itemCount: audioTracks.keys.length + 1,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(
-                        index < audioTracks.keys.length
-                            ? audioTracks.values.elementAt(index).toString()
-                            : 'Disable',
-                      ),
-                      onTap: () {
-                        Navigator.pop(
-                          context,
-                          index < audioTracks.keys.length
-                              ? audioTracks.keys.elementAt(index)
-                              : -1,
-                        );
-                      },
-                    );
-                  },
-                ),
-              ),
-            );
-          },
-        );
-        if (selectedAudioTrackId != null) {
-          await _controller!.setAudioTrack(selectedAudioTrackId);
-        }
-      }
-
-      print("===== Done _getAudioTracks VlcPlayerWithControls =====");
-    } catch (error) {
-      print("===== error _getAudioTracks VlcPlayerWithControls =====");
-      print(error);
-    }
-  }
-
-  void _getRendererDevices() async {
-    try {
-      var castDevices = await _controller!.getRendererDevices();
-      //
-      if (castDevices != null && castDevices.isNotEmpty) {
-        var selectedCastDeviceName = await showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Display Devices'),
-              content: Container(
-                width: double.maxFinite,
-                height: 250,
-                child: ListView.builder(
-                  itemCount: castDevices.keys.length + 1,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(
-                        index < castDevices.keys.length
-                            ? castDevices.values.elementAt(index).toString()
-                            : 'Disconnect',
-                      ),
-                      onTap: () {
-                        Navigator.pop(
-                          context,
-                          index < castDevices.keys.length
-                              ? castDevices.keys.elementAt(index)
-                              : null,
-                        );
-                      },
-                    );
-                  },
-                ),
-              ),
-            );
-          },
-        );
-        await _controller!.castToRenderer(selectedCastDeviceName);
-      } else {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text('No Display Device Found!')));
-      }
-
-      print("===== Done _getRendererDevices VlcPlayerWithControls =====");
-    } catch (error) {
-      print("===== error _getRendererDevices VlcPlayerWithControls =====");
-      print(error);
-    }
-  }
+  // void _cyclePlaybackSpeed() async {
+  //   try {
+  //     playbackSpeedIndex++;
+  //     if (playbackSpeedIndex >= playbackSpeeds.length) {
+  //       playbackSpeedIndex = 0;
+  //     }
+  //     return await _controller!
+  //         .setPlaybackSpeed(playbackSpeeds.elementAt(playbackSpeedIndex));
+  //     // print("===== Done _cyclePlaybackSpeed VlcPlayerWithControls =====");
+  //   } catch (error) {
+  //     print("===== error _cyclePlaybackSpeed VlcPlayerWithControls =====");
+  //     print(error);
+  //   }
+  // }
+  //
+  // void _setSoundVolume(value) {
+  //   setState(() {
+  //     volumeValue = value;
+  //   });
+  //   _controller!.setVolume(volumeValue.toInt());
+  // }
+  //
+  // void _togglePlaying() async {
+  //   try {
+  //     _controller!.value.isPlaying
+  //         ? await _controller!.pause()
+  //         : await _controller!.play();
+  //     print('Toggle Playing');
+  //
+  //     print("===== Done _togglePlaying VlcPlayerWithControls =====");
+  //   } catch (error) {
+  //     print("===== error _togglePlaying VlcPlayerWithControls =====");
+  //     print(error);
+  //   }
+  // }
+  //
+  // void _onSliderPositionChanged(double progress) {
+  //   setState(() {
+  //     sliderValue = progress.floor().toDouble();
+  //   });
+  //   //convert to Milliseconds since VLC requires MS to set time
+  //   _controller!.setTime(sliderValue.toInt() * 1000);
+  // }
+  //
+  // void _getSubtitleTracks() async {
+  //   try {
+  //     if (!_controller!.value.isPlaying) return;
+  //
+  //     var subtitleTracks = await _controller!.getSpuTracks();
+  //     //
+  //     if (subtitleTracks != null && subtitleTracks.isNotEmpty) {
+  //       var selectedSubId = await showDialog(
+  //         context: context,
+  //         builder: (BuildContext context) {
+  //           return AlertDialog(
+  //             title: Text('Select Subtitle'),
+  //             content: Container(
+  //               width: double.maxFinite,
+  //               height: 250,
+  //               child: ListView.builder(
+  //                 itemCount: subtitleTracks.keys.length + 1,
+  //                 itemBuilder: (context, index) {
+  //                   return ListTile(
+  //                     title: Text(
+  //                       index < subtitleTracks.keys.length
+  //                           ? subtitleTracks.values.elementAt(index).toString()
+  //                           : 'Disable',
+  //                     ),
+  //                     onTap: () {
+  //                       Navigator.pop(
+  //                         context,
+  //                         index < subtitleTracks.keys.length
+  //                             ? subtitleTracks.keys.elementAt(index)
+  //                             : -1,
+  //                       );
+  //                     },
+  //                   );
+  //                 },
+  //               ),
+  //             ),
+  //           );
+  //         },
+  //       );
+  //       if (selectedSubId != null)
+  //         await _controller!.setSpuTrack(selectedSubId);
+  //     }
+  //
+  //     print("===== Done _getSubtitleTracks VlcPlayerWithControls =====");
+  //   } catch (error) {
+  //     print("===== error _getSubtitleTracks VlcPlayerWithControls =====");
+  //     print(error);
+  //   }
+  // }
+  //
+  // void _getAudioTracks() async {
+  //   try {
+  //     if (!_controller!.value.isPlaying) return;
+  //
+  //     var audioTracks = await _controller!.getAudioTracks();
+  //     //
+  //     if (audioTracks != null && audioTracks.isNotEmpty) {
+  //       var selectedAudioTrackId = await showDialog(
+  //         context: context,
+  //         builder: (BuildContext context) {
+  //           return AlertDialog(
+  //             title: Text('Select Audio'),
+  //             content: Container(
+  //               width: double.maxFinite,
+  //               height: 250,
+  //               child: ListView.builder(
+  //                 itemCount: audioTracks.keys.length + 1,
+  //                 itemBuilder: (context, index) {
+  //                   return ListTile(
+  //                     title: Text(
+  //                       index < audioTracks.keys.length
+  //                           ? audioTracks.values.elementAt(index).toString()
+  //                           : 'Disable',
+  //                     ),
+  //                     onTap: () {
+  //                       Navigator.pop(
+  //                         context,
+  //                         index < audioTracks.keys.length
+  //                             ? audioTracks.keys.elementAt(index)
+  //                             : -1,
+  //                       );
+  //                     },
+  //                   );
+  //                 },
+  //               ),
+  //             ),
+  //           );
+  //         },
+  //       );
+  //       if (selectedAudioTrackId != null) {
+  //         await _controller!.setAudioTrack(selectedAudioTrackId);
+  //       }
+  //     }
+  //
+  //     print("===== Done _getAudioTracks VlcPlayerWithControls =====");
+  //   } catch (error) {
+  //     print("===== error _getAudioTracks VlcPlayerWithControls =====");
+  //     print(error);
+  //   }
+  // }
+  //
+  // void _getRendererDevices() async {
+  //   try {
+  //     var castDevices = await _controller!.getRendererDevices();
+  //     //
+  //     if (castDevices != null && castDevices.isNotEmpty) {
+  //       var selectedCastDeviceName = await showDialog(
+  //         context: context,
+  //         builder: (BuildContext context) {
+  //           return AlertDialog(
+  //             title: Text('Display Devices'),
+  //             content: Container(
+  //               width: double.maxFinite,
+  //               height: 250,
+  //               child: ListView.builder(
+  //                 itemCount: castDevices.keys.length + 1,
+  //                 itemBuilder: (context, index) {
+  //                   return ListTile(
+  //                     title: Text(
+  //                       index < castDevices.keys.length
+  //                           ? castDevices.values.elementAt(index).toString()
+  //                           : 'Disconnect',
+  //                     ),
+  //                     onTap: () {
+  //                       Navigator.pop(
+  //                         context,
+  //                         index < castDevices.keys.length
+  //                             ? castDevices.keys.elementAt(index)
+  //                             : null,
+  //                       );
+  //                     },
+  //                   );
+  //                 },
+  //               ),
+  //             ),
+  //           );
+  //         },
+  //       );
+  //       await _controller!.castToRenderer(selectedCastDeviceName);
+  //     } else {
+  //       ScaffoldMessenger.of(context)
+  //           .showSnackBar(SnackBar(content: Text('No Display Device Found!')));
+  //     }
+  //
+  //     print("===== Done _getRendererDevices VlcPlayerWithControls =====");
+  //   } catch (error) {
+  //     print("===== error _getRendererDevices VlcPlayerWithControls =====");
+  //     print(error);
+  //   }
+  // }
   //
   // void _createCameraImage() async {
   //   try {
