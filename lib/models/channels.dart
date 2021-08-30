@@ -33,14 +33,14 @@ class Channels with ChangeNotifier {
   int indexChannelPlayNow = 0;
   List<Channel>? allChannels = [
     Channel(
-      tvgId: "AlHurra.us",
-      tvgName: "Al Hurra",
-      tvgCountry: "US",
+      tvgId: "AbuDhabiEmirates.ae",
+      tvgName: "Abu Dhabi Emirates",
+      tvgCountry: "AE",
       tvgLanguage: "Arabic",
-      tvgLogo: "https://i.imgur.com/GRl09vk.jpg",
-      groupTitle: "News",
+      tvgLogo: "-",
+      groupTitle: "-",
       country: "-",
-      path: "https://mbnhls-lh.akamaihd.net/i/MBN_1@118619/master.m3u8",
+      path: "https://admdn3.cdn.mangomolo.com/emarat/smil:emarat.stream.smil/playlist.m3u8",
       type: VideoType.network,
     ),
   ];
