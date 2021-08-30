@@ -4,8 +4,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
    <application
+       android:name="androidx.multidex.MultiDexApplication"
         android:label="MX IPTV"
         android:icon="@mipmap/launcher_icon">
+
 
         <activity
             android:name=".MainActivity"
