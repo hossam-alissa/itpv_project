@@ -40,10 +40,13 @@ class Channels with ChangeNotifier {
       tvgLogo: "-",
       groupTitle: "-",
       country: "-",
-      path: "https://admdn3.cdn.mangomolo.com/emarat/smil:emarat.stream.smil/playlist.m3u8",
+      path:
+          "https://admdn3.cdn.mangomolo.com/emarat/smil:emarat.stream.smil/playlist.m3u8",
       type: VideoType.network,
     ),
   ];
+
+  List<Channel>? channelGroupTitle = [];
 
   void addChannels(List<String> list) {
     print("----- split -----");
@@ -195,6 +198,40 @@ class Channels with ChangeNotifier {
           indexChannel = indexChannel + 2;
         }
       }
+    }
+    notifyListeners();
+  }
+
+  int getGroupTitleNumber(String groupTitle) {
+    int groupTitleNumber = 0;
+    allChannels!.forEach((element) {
+      if (element.groupTitle == groupTitle) {
+        groupTitleNumber++;
+      }
+    });
+    return groupTitleNumber;
+  }
+
+  void getChannelGroupTitle(String groupTitle) {
+    channelGroupTitle = [];
+
+    if(groupTitle == "All Channels"){
+      channelGroupTitle = allChannels;
+    }else {
+      allChannels!.forEach((element) {
+        if (element.groupTitle == groupTitle) {
+          channelGroupTitle!.add(Channel(
+              tvgId: element.tvgId,
+              tvgName: element.tvgName,
+              tvgCountry: element.tvgCountry,
+              tvgLanguage: element.tvgLanguage,
+              tvgLogo: element.tvgLogo,
+              groupTitle: groupTitle,
+              country: element.country,
+              path: element.path,
+              type: element.type));
+        }
+      });
     }
     notifyListeners();
   }
