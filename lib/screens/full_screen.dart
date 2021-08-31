@@ -116,7 +116,7 @@ class _FullScreenState extends State<FullScreen> {
                   Navigator.pop(context);
                 },
                 child: Container(
-                  alignment: Alignment.bottomRight,
+                  alignment: Alignment.topLeft,
                   height: 40,
                   width: 40,
                   child: Icon(
