@@ -65,9 +65,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     TextButton(
                       child: Text('info'),
                       onPressed: () {
-                        setState(() {
-                          themeNumber = 1;
-                        });
+                        UserInformation.setUserInformation();
+                        UserInformation.setUserLinks();
+                        UserInformation.setFavoriteChannel();
                       },
                     ),
                   ],

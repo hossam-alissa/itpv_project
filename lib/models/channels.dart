@@ -48,6 +48,8 @@ class Channels with ChangeNotifier {
 
   List<Channel>? channelGroupTitle = [];
 
+  List<String>? listGroupTitle = [];
+
   void addChannels(List<String> list) {
     print("----- split -----");
     String? tvgId = "tvgId";
