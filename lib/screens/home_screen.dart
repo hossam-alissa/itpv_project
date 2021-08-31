@@ -82,6 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: widthSizeScreen! / 3,
                 color: Colors.white,
                 child: ListView(
+                  padding: const EdgeInsets.all(0.0),
                   children: [
                     GestureDetector(
                       onTap: () {
@@ -182,7 +183,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           "assets/images_svg/pay_premium_version.svg",
                           "Pay Premium Version"),
                     ),
-                    SizedBox(height: spase),
+                    SizedBox(height: spase ),
+                    // SizedBox(height: spase ),
                   ],
                 ),
               ),

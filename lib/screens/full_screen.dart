@@ -109,25 +109,28 @@ class _FullScreenState extends State<FullScreen> {
               ),
             ),
             Positioned(
-              right: 0,
-              bottom: 0,
+              bottom: 0.0,
+              right: 0.0,
               child: GestureDetector(
                 onTap: () async{
                   Navigator.pop(context);
                 },
                 child: Container(
                   alignment: Alignment.topLeft,
-                  height: 40,
-                  width: 40,
-                  child: Icon(
-                    Icons.close,
-                    size: 25,
-                    color: Colors.white,
+                  height: 45,
+                  width: 45,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8.0,left: 8.0),
+                    child: Icon(
+                      Icons.close,
+                      size: 25,
+                      color: Colors.white,
+                    ),
                   ),
                   decoration: BoxDecoration(
                     color: Colors.black,
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(41),
+                      topLeft: Radius.circular(35),
                     ),
                   ),
                 ),

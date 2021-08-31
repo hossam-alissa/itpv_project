@@ -104,6 +104,7 @@ class _LiveTvScreenState extends State<LiveTvScreen> {
                   width: widthSizeScreen! / 3,
                   color: Colors.white,
                   child: ListView(
+                    padding: const EdgeInsets.all(0.0),
                     children: [
                       ///All Channels
                       GestureDetector(
