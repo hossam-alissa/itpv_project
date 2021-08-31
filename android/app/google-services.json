@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "852027540752",
+    "project_id": "mxiptv-f1fa9",
+    "storage_bucket": "mxiptv-f1fa9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852027540752:android:09e09f0dcf6f9aa142d195",
+        "android_client_info": {
+          "package_name": "com.mxiptv.live"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852027540752-sf348skshqqh9qfjmahjkt0ik8r24c4o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mxiptv.live",
+            "certificate_hash": "4f3d02448f7f88660e3e30f2f320f7b391541d0a"
+          }
+        },
+        {
+          "client_id": "852027540752-01bqtmpddqag5p62udt14jedmuaovvm2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU23xFlDTG06loIcXcEi1U-poZ5M_3Ay4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852027540752-01bqtmpddqag5p62udt14jedmuaovvm2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
