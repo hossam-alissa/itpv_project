@@ -68,6 +68,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         UserInformation.setUserInformation();
                         UserInformation.setUserLinks();
                         UserInformation.setFavoriteChannel();
+
+                        Provider.of<Channels>(contextProvider!,listen: false).getListGroupTitle();
                       },
                     ),
                   ],

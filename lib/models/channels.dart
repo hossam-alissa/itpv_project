@@ -48,7 +48,25 @@ class Channels with ChangeNotifier {
 
   List<Channel>? channelGroupTitle = [];
 
-  List<String>? listGroupTitle = [];
+  List<String>? listGroupTitle = ["-"];
+
+  void getListGroupTitle() {
+    listGroupTitle!.insert(0, channelGroupTitle![0].groupTitle.toString());
+    int i = 0;
+    channelGroupTitle!.forEach((channel) {
+      i = 0;
+      while(i < listGroupTitle!.length){
+        // if(listGroupTitle![i] != channel.tvgLogo){
+        //   listGroupTitle!.insert(i, channel.groupTitle.toString());
+        // }
+        i++;
+      }
+    });
+
+    // listGroupTitle!.forEach((element) {
+    //   print(element);
+    // });
+  }
 
   void addChannels(List<String> list) {
     print("----- split -----");
@@ -217,9 +235,9 @@ class Channels with ChangeNotifier {
   void getChannelGroupTitle(String groupTitle) {
     channelGroupTitle = [];
 
-    if(groupTitle == "All Channels"){
+    if (groupTitle == "All Channels") {
       channelGroupTitle = allChannels;
-    }else {
+    } else {
       allChannels!.forEach((element) {
         if (element.groupTitle == groupTitle) {
           channelGroupTitle!.add(Channel(
